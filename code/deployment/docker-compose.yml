@@ -2,10 +2,11 @@ version: '3.8'
 
 services:
   api:
-    build: ./api
+    build:
+      context: ../
+      dockerfile: deployment/api/Dockerfile
     container_name: api
     ports:
       - "8000:8000"
     volumes:
-      - ../../models:/models
-      - ../datasets:/datasets
+      - ../../datasets:/app/datasets

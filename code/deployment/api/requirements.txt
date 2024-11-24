@@ -1,6 +1,4 @@
-fastapi~=0.112.2
-uvicorn
-PIL
+pillow
 pydantic
 telebot
 torch~=2.4.1
