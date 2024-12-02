@@ -9,7 +9,7 @@ from PIL import Image
 
 from models_code.make_prediction import predicted_age, decode
 
-token = '8148288527:AAH1XAXhvgdVPurjT1t0bhqMsB5xT0C1QLk'
+token = 'ENTER YOUR TOKEN HERE'
 bot = telebot.TeleBot(token)
 URI_INFO = f"https://api.telegram.org/bot{token}/getfile?file_id="
 URI = f"https://api.telegram.org/file/bot{token}/"
