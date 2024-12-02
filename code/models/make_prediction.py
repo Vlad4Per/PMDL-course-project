@@ -1,8 +1,10 @@
+import os
+
 import torch
 from torch.utils.data import DataLoader
+from datasets.preproc_img import load_training_img
+from models_code.CNNmodel import CNNClassificationModel
 
-from CNNmodel import CNNClassificationModel
-from preproc_img.preproc_img import load_training_img
 
 decode = {
     0: "1-5", 1: "5-10", 2: "10-15", 3: "15-20", 4: "20-25", 5: "25-30", 6: "30-40", 7: "40-50", 8: "50-60", 9: "60-70",
@@ -10,7 +12,7 @@ decode = {
 }
 
 
-def predicted_age(img_path, model_path='/models/best.pt'):
+def predicted_age(img_path, model_name='best.pt'):
     def predict(model, test_loader, device):
         """
         Run model inference on test data
@@ -26,9 +28,10 @@ def predicted_age(img_path, model_path='/models/best.pt'):
 
                 predictions.extend([i.item() for i in predicted])
             return predictions
-
+    print(os.listdir('models'))
+    model_path = 'models/' + model_name
     model = CNNClassificationModel()
-    ckpt = torch.load(model_path)
+    ckpt = torch.load(model_path, map_location=torch.device('cpu'))
     model.load_state_dict(ckpt)
 
     batch_size = 128
